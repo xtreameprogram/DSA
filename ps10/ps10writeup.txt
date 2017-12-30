@@ -1,0 +1,18 @@
+P1. For the graphs of both err and herr, it is shown that the more clusters k-means divides things 
+    into, the less error within the dataset. Thos means that the more clusters you have, the more
+    accurate the clusters are. Then, the ratio steadily increases.
+
+P2. Anne Arundel Shows up next to places like Lake and Fulton. However, a second run 
+    drastically changes things. Now it is clustered with places like Sonoma. 
+    Yes, they are usualy fairly accurate as they have very similar numbers
+
+P3. The reason the error gets so low as there are more clusters, is because with more clusters,
+    there is more likely a chance that a cluster is nearby that mor accurately fits that point.
+    With fewer clusters, the closest cluster could still be far away while with more, the closest cluster
+    will be close.
+
+P4. weights = [1.0, 1.0, 1.0, 0, 1.0, 0, 1.0, 0, 1.0, 0, 1.0, 0, 1.0, 1.0] has a lower error towards the
+    end of the weights list. This is probably because it reduces the amounts of factors that must be
+    accounted for. weights = [.75, .5, 1.0, 0, 1.0, 0, 1.0, 0, 1.0, 0, 1.0, 0, 1.0, 1.0] furter reduces
+    error. Probably because the items that need to be acounted for are scaled lower, so more likely to be
+    correct
