@@ -361,8 +361,8 @@ points = buildCountyPoints('counties.txt')
 # testPoints = random.sample(points, len(points)/10)
 
 # print(totalError(points))
-graphRemovedErr(points)
+# graphRemovedErr(points)
 
 # whereIsAnne(points)
 
-# graphPredictionErr(points, 'what does this do')
+graphPredictionErr(points, 'what does this do')
