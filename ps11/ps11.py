@@ -81,23 +81,35 @@ def bruteForceSearch(digraph, start, end, maxTotalDist, maxDistOutdoors):
 #
 def directedDFSUnder(digraph, current, end, maxTotalDist, maxDistOutdoors, edge, visited = []):
     if current in visited:
-        return False
+        return False, ""
 
     if current == end:
-        return True
+        return True, [current]
+
 
     currentNode = digraph.getNode(current)
     edges = currentNode.getEdges()
 
+    for e in edges:
+        if e.getDestination() == end:
+            result, add = directedDFSUnder(digraph, e.getDestination(), end, maxTotalDist, maxDistOutdoors, edge, visited)
+            if result:
+                return True, add + [current]
+
     if len(edges) == 0:
-        return False
+        return False, ""
+
+    visited.append(current)
 
     for edge in edges:
         if not (int(edge.getTotalLength()) > maxTotalDist or int(edge.getOutsideLength()) > maxDistOutdoors):
-            print edge.getDestination()
+            result, add = directedDFSUnder(digraph, edge.getDestination(), end, maxTotalDist, maxDistOutdoors, edge, visited)
+            if result:
+                return True, add + [current]
     
 def directedDFS(digraph, start, end, maxTotalDist, maxDistOutdoors):
-    return directedDFSUnder(digraph, start, end, maxTotalDist, maxDistOutdoors, None)
+    t, ret = directedDFSUnder(digraph, start, end, maxTotalDist, maxDistOutdoors, None)
+    return list(reversed(ret))
 
 
 
