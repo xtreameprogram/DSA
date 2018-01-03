@@ -109,7 +109,20 @@ def directedDFSUnder(digraph, current, end, maxTotalDist, maxDistOutdoors, visit
 
     
 def directedDFS(digraph, start, end, maxTotalDist, maxDistOutdoors):
+
+    ret = directedDFSUnder(digraph, start, end, maxTotalDist, maxDistOutdoors, [])
+    visited = []
     paths = []
+    n = list(reversed(ret[1]))
+
+    for i in xrange(1, len(n) - 1):
+        visited.append(n[i])
+        r = directedDFSUnder(digraph, start, end, maxTotalDist, maxDistOutdoors, visited)
+        if not r[0]:
+            break
+        else:
+            paths.append(r[1])
+
     visited = []
     ret = (True, [])
 
@@ -129,6 +142,8 @@ def directedDFS(digraph, start, end, maxTotalDist, maxDistOutdoors):
         paths.append(ret[1])
         if (len(ret[1]) <= 2):
             ret = (False, [])
+
+    
     
     shl = paths[0]
     for l in paths:
